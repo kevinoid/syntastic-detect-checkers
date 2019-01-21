@@ -2,9 +2,9 @@ Detect Syntastic Checkers
 =========================
 
 A [Vim](https://www.vim.org/) plugin which extends
-[Syntastic](https://github.com/vim-syntastic/syntastic) to use checkers
-which apply to the file being edited based on the presence of project settings
-and inline options.
+[Syntastic](https://github.com/vim-syntastic/syntastic) to detect which
+checkers to use based on the presence of per-file and per-project linter
+settings.
 
 
 ## Installation
