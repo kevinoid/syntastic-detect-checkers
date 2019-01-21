@@ -47,9 +47,9 @@ and inline directives in the file being edited (e.g. `/* eslint-disable */`).
 The rules are hard coded in per-language
 [autoload-functions](https://vimhelp.org/eval.txt.html#autoload-functions).
 
-To debug the plugin, set
-[`g:syntastic_debug`](https://github.com/vim-syntastic/syntastic/blob/0d25f4fb/doc/syntastic.txt)
-= 33 in `.vimrc` and look for lines starting with `syntastic#detect#` in
+To debug the plugin, [`set g:syntastic_debug =
+33`](https://github.com/vim-syntastic/syntastic/blob/0d25f4fb/doc/syntastic.txt)
+in `.vimrc` and look for lines starting with `syntastic#detect#` in
 [`:messages`](https://vimhelp.org/message.txt.html#%3Amessages).
 
 To customize the behavior of this plugin, users can `set
