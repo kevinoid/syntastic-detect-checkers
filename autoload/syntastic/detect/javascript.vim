@@ -1,6 +1,7 @@
 if exists('g:loaded_syntastic_detect_javascript_autoload')
     finish
 endif
+
 let g:loaded_syntastic_detect_javascript_autoload = 1
 
 let s:save_cpoptions = &cpoptions
@@ -16,7 +17,8 @@ function! syntastic#detect#javascript#detectAll() abort " {{{
 
     " Load nearest package.json, which is relevant to several checkers
     let package_json = findfile('package.json', '.;')
-    if package_json !=# ''
+
+    if package_json isnot# ''
         let package_json = join(readfile(package_json))
     endif
 
@@ -30,9 +32,11 @@ function! syntastic#detect#javascript#detectAll() abort " {{{
         call add(javascript_checkers, 'eslint')
     else
         let &suffixesadd = '.js,.yaml,.yml,.json'
-        if findfile('.eslintrc', '.;') !=# ''
+
+        if findfile('.eslintrc', '.;') isnot# ''
             call add(javascript_checkers, 'eslint')
         endif
+
         let &suffixesadd = ''
     endif
 
@@ -46,15 +50,15 @@ function! syntastic#detect#javascript#detectAll() abort " {{{
     endif
 
     if stridx(package_json, '"jscsConfig":') != -1
-        \ || findfile('.jscsrc', '.;') !=# ''
-        \ || findfile('.jscs.json', '.;') !=# ''
-        \ || findfile('.jscs.yaml', '.;') !=# ''
+        \ || findfile('.jscsrc', '.;') isnot# ''
+        \ || findfile('.jscs.json', '.;') isnot# ''
+        \ || findfile('.jscs.yaml', '.;') isnot# ''
         let b:syntastic_checkers = ['jscs']
     endif
 
     if stridx(package_json, '"jshintConfig":') != -1
         \ || search('\m/\*\s*jshint\>', 'cnw')
-        \ || findfile('.jshintrc', '.;') !=# ''
+        \ || findfile('.jshintrc', '.;') isnot# ''
         if @% =~# '\m\.jsx$'
             call add(javascript_checkers, 'jsxhint')
         else
@@ -63,10 +67,10 @@ function! syntastic#detect#javascript#detectAll() abort " {{{
     endif
 
     if search('\m/\*\s*jslint\>', 'cnw')
-        \ || findfile('.jslintrc', '.;') !=# ''
-        \ || findfile('.jslint.conf', '.;') !=# ''
-        \ || findfile('jslintrc', '.;') !=# ''
-        \ || findfile('jslint.conf', '.;') !=# ''
+        \ || findfile('.jslintrc', '.;') isnot# ''
+        \ || findfile('.jslint.conf', '.;') isnot# ''
+        \ || findfile('jslintrc', '.;') isnot# ''
+        \ || findfile('jslint.conf', '.;') isnot# ''
         call add(javascript_checkers, 'jslint')
     endif
 
@@ -75,7 +79,7 @@ function! syntastic#detect#javascript#detectAll() abort " {{{
     endif
 
     if stridx(package_json, '"lynt":') != -1
-        \ || findfile('.lyntrc', '.;') !=# ''
+        \ || findfile('.lyntrc', '.;') isnot# ''
         call add(javascript_checkers, 'lynt')
     endif
 
@@ -88,7 +92,7 @@ function! syntastic#detect#javascript#detectAll() abort " {{{
     endif
 
     if stridx(package_json, '"term-lint":') != -1
-        \ || findfile('.tern-project', '.;') !=# ''
+        \ || findfile('.tern-project', '.;') isnot# ''
         call add(javascript_checkers, 'tern_lint')
     endif
 

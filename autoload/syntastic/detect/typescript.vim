@@ -1,6 +1,7 @@
 if exists('g:loaded_syntastic_detect_typescript_autoload')
     finish
 endif
+
 let g:loaded_syntastic_detect_typescript_autoload = 1
 
 let s:save_cpoptions = &cpoptions
@@ -16,7 +17,8 @@ function! syntastic#detect#typescript#detectAll() abort " {{{
 
     " Load nearest package.json, which is relevant to several checkers
     let package_json = findfile('package.json', '.;')
-    if package_json !=# ''
+
+    if package_json isnot# ''
         let package_json = join(readfile(package_json))
     endif
 
@@ -27,7 +29,8 @@ function! syntastic#detect#typescript#detectAll() abort " {{{
     else
         let &suffixesadd = '.js,.yaml,.yml,.json'
         let eslintrc = findfile('.eslintrc', '.;')
-        if eslintrc !=# ''
+
+        if eslintrc isnot# ''
             for line in readfile(eslintrc)
                 if stridx(line, '"typescript"') != -1
                     call add(typescript_checkers, 'eslint')
@@ -35,18 +38,19 @@ function! syntastic#detect#typescript#detectAll() abort " {{{
                 endif
             endfor
         endif
+
         let &suffixesadd = ''
     endif
 
     if stridx(package_json, '"lynt":') != -1
-        \ || findfile('.lyntrc', '.;') !=# ''
+        \ || findfile('.lyntrc', '.;') isnot# ''
         call add(typescript_checkers, 'lynt')
     endif
 
     if stridx(package_json, '"tslintConfig":') != -1
         \ || stridx(package_json, '"tslint":') != -1
-        \ || findfile('tslint.json', '.;') !=# ''
-        \ || findfile('tslint.yaml', '.;') !=# ''
+        \ || findfile('tslint.json', '.;') isnot# ''
+        \ || findfile('tslint.yaml', '.;') isnot# ''
         call add(typescript_checkers, 'tslint')
     endif
 
