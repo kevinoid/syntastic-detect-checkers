@@ -70,7 +70,7 @@ separate plugin.
 
 If you have read this far, you may also be interested in these other plugins:
 
-- [ale-detect-checkers](https://github.com/kevinoid/ale-detect-checkers)
+- [ale-detect-linters](https://github.com/kevinoid/ale-detect-linters)
   \- A port of this plugin to [ALE](https://github.com/w0rp/ale).
 - [syntastic-use-node-bin](https://github.com/kevinoid/syntastic-use-node-bin)
   \- Use checker executables installed in per-project `node_modules/.bin`
